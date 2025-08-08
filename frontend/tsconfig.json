@@ -13,7 +13,17 @@
     "experimentalDecorators": true,
     "importHelpers": true,
     "target": "ES2022",
-    "module": "preserve"
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "lib": ["ES2022", "DOM"],
+    "sourceMap": true,
+    "forceConsistentCasingInFileNames": true,
+    "baseUrl": "src/app",
+    "paths": {
+      "@features/*": ["features/*"],
+      "@shared/*": ["shared/*"],
+      "@core/*": ["core/*"]
+    }
   },
   "angularCompilerOptions": {
     "enableI18nLegacyMessageIdFormat": false,
@@ -30,5 +40,6 @@
     {
       "path": "./tsconfig.spec.json"
     }
-  ]
+  ],
+  "exclude": ["node_modules", "tmp", "dist"]
 }
