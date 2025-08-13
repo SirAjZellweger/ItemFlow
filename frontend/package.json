@@ -59,6 +59,8 @@
     "typescript-eslint": "8.39.0"
   },
   "lint-staged": {
-    "*.{ts,tsx,js,json,css,scss,html}": "eslint --fix --max-warnings=0"
+    "*.{ts,tsx,js,json,css,scss,html}": [
+      "eslint --fix --max-warnings=0"
+    ]
   }
 }
