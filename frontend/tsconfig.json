@@ -20,9 +20,9 @@
     "forceConsistentCasingInFileNames": true,
     "baseUrl": "src/app",
     "paths": {
-      "@features/*": ["features/*"],
-      "@shared/*": ["shared/*"],
-      "@core/*": ["core/*"]
+      "@features": ["features/index.ts"],
+      "@shared": ["shared/index.ts"],
+      "@core": ["core/index.ts"]
     }
   },
   "angularCompilerOptions": {
