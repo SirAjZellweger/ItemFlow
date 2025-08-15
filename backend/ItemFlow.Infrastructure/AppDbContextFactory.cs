@@ -8,7 +8,7 @@ public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
 {
     public AppDbContext CreateDbContext(string[] args)
     {
-        string configurationBasePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "ItemFlow.API");
+        var configurationBasePath = Path.Combine(Directory.GetCurrentDirectory(), "..", "ItemFlow.API");
 
         IConfigurationRoot configuration = new ConfigurationBuilder()
             .SetBasePath(configurationBasePath)

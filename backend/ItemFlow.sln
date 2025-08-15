@@ -11,13 +11,18 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemFlow.Infrastructure", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ItemFlow.API", "ItemFlow.API\ItemFlow.API.csproj", "{32109E82-3632-488B-BD61-4E8469E6E6A5}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		.gitignore = .gitignore
+		Directory.Packages.props = Directory.Packages.props
+		global.json = global.json
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{75FFC0F2-0A9F-49A0-AFB8-5E73B872D9E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -36,5 +41,11 @@ Global
 		{32109E82-3632-488B-BD61-4E8469E6E6A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{32109E82-3632-488B-BD61-4E8469E6E6A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{32109E82-3632-488B-BD61-4E8469E6E6A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {B4A7873F-60B5-457B-B860-930BF1C562B5}
 	EndGlobalSection
 EndGlobal
