@@ -19,4 +19,9 @@
     <PackageReference Include="Microsoft.Extensions.Configuration.Json" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\ItemFlow.Application\ItemFlow.Application.csproj" />
+    <ProjectReference Include="..\ItemFlow.Domain\ItemFlow.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
