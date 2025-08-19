@@ -5,7 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { CreateItem } from '../shared/item.model';
 import { ItemService } from '../shared/item.domain.service';
-import { take } from 'rxjs';
+import { tap } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-add-item',
@@ -16,6 +17,7 @@ import { take } from 'rxjs';
 })
 export class PageAddItemComponent {
   private readonly itemService = inject(ItemService);
+  private readonly router = inject(Router);
 
   public readonly name = signal('');
   public readonly description = signal<string | undefined>(undefined);
@@ -30,7 +32,10 @@ export class PageAddItemComponent {
         description: this.description(),
       };
 
-      this.itemService.createItem(item).pipe(take(1)).subscribe();
+      this.itemService
+        .createItem(item)
+        .pipe(tap(() => this.router.navigate(['/items'])))
+        .subscribe();
     }
   }
 }

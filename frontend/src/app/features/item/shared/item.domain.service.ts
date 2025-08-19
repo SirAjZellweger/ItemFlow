@@ -10,11 +10,20 @@ export class ItemService {
   private readonly _items = signal<Item[]>([]);
   readonly items = this._items.asReadonly();
 
-  createItem(item: CreateItem): Observable<Item> {
+  private initialized = false;
+
+  public init(): void {
+    if (!this.initialized) {
+      this.getItems().subscribe();
+      this.initialized = true;
+    }
+  }
+
+  public createItem(item: CreateItem): Observable<Item> {
     return this.data.createItem(item).pipe(tap(newItem => this._items.update(items => [...items, newItem])));
   }
 
-  getItems(): Observable<Item[]> {
+  private getItems(): Observable<Item[]> {
     return this.data.getAllItems().pipe(tap(items => this._items.set(items)));
   }
 }

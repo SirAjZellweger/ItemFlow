@@ -62,7 +62,7 @@ module.exports = tseslint.config(
           rules: [
             { from: 'core', allow: ['core', 'shared'] },
             { from: 'shared', allow: ['shared'] },
-            { from: 'features', allow: ['features', 'shared'] },
+            { from: 'features', allow: ['core', 'shared', 'features'] },
           ],
         },
       ],

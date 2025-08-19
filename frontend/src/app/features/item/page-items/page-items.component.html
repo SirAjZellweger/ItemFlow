@@ -2,3 +2,7 @@
 <a matFab [routerLink]="'new'" aria-label="Example icon button with a delete icon">
     <mat-icon>add</mat-icon>
 </a>
+
+@for(item of items(); track item.id){
+    {{item | json}}
+}
