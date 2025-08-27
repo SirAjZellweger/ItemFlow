@@ -1,16 +1,16 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormsModule } from '@angular/forms';
-import { MatButtonModule } from '@angular/material/button';
-import { CreateItem } from '../shared/item.model';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { ItemService } from '../shared/item.domain.service';
-import { tap } from 'rxjs';
-import { Router } from '@angular/router';
+import { switchMap, take, tap } from 'rxjs';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { CreateItem, FormItemComponent } from '../shared';
+import { MatButtonModule } from '@angular/material/button';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-page-add-item',
-  imports: [FormsModule, MatFormFieldModule, MatInputModule, MatButtonModule],
+  imports: [FormItemComponent, MatButtonModule, MatToolbarModule, MatIconModule],
   templateUrl: './page-add-item.component.html',
   styleUrl: './page-add-item.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -18,24 +18,28 @@ import { Router } from '@angular/router';
 export class PageAddItemComponent {
   private readonly itemService = inject(ItemService);
   private readonly router = inject(Router);
+  private readonly snackBar = inject(MatSnackBar);
+  private readonly route = inject(ActivatedRoute);
 
-  public readonly name = signal('');
-  public readonly description = signal<string | undefined>(undefined);
+  public submit(createItem: CreateItem): void {
+    this.itemService
+      .createItem(createItem)
+      .pipe(
+        tap(createdItem => this.router.navigate(['/items', createdItem.id])),
+        switchMap(() =>
+          this.snackBar
+            .open('Gegenstand erfolgreich erstellt', 'Zurück zur Übersicht', { duration: 3000 })
+            .onAction()
+            .pipe(tap(() => this.router.navigate(['/items']))),
+        ),
+        take(1),
+      )
+      .subscribe({
+        error: () => this.snackBar.open('Fehler beim Erstellen des Gegenstands', 'Schliessen'),
+      });
+  }
 
-  public readonly isNameValid = computed(() => this.name().trim().length > 0);
-  public readonly isFormValid = computed(() => this.isNameValid());
-
-  public submit(): void {
-    if (this.isFormValid()) {
-      const item: CreateItem = {
-        name: this.name(),
-        description: this.description(),
-      };
-
-      this.itemService
-        .createItem(item)
-        .pipe(tap(() => this.router.navigate(['/items'])))
-        .subscribe();
-    }
+  public navigateBack(): void {
+    this.router.navigate(['..'], { relativeTo: this.route });
   }
 }

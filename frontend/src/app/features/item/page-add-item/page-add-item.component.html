@@ -1,18 +1,8 @@
-<h1>Neuen Gegenstand hinzufügen</h1>
-<mat-form-field>
-  <mat-label>Bezeichnung</mat-label>
-  <input matInput required [(ngModel)]="name">
-  @if(!isNameValid()){
-    <mat-error>
-        Name ist erforderlich
-    </mat-error>
-  }
-</mat-form-field>
-<mat-form-field>
-  <mat-label>Beschreibung</mat-label>
-  <textarea matInput [(ngModel)]="description"></textarea>
-</mat-form-field>
+<mat-toolbar>
+  <button matIconButton (click)="navigateBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Neuen Gegenstand erstellen</span>
+</mat-toolbar>
 
-<button matButton="outlined" (click)="submit()" [disabled]="!isFormValid()">
-  Speichern
-</button>
+<app-form-item (submitted)="submit($event)"></app-form-item>

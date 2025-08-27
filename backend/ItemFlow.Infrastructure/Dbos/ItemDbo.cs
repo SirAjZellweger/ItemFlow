@@ -1,4 +1,4 @@
-﻿namespace ItemFlow.Infrastructure.DBOs;
+﻿namespace ItemFlow.Infrastructure.Dbos;
 
 public class ItemDbo
 {

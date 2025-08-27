@@ -1,5 +1,5 @@
 ﻿using ItemFlow.Domain.Items;
-using ItemFlow.Infrastructure.DBOs;
+using ItemFlow.Infrastructure.Dbos;
 
 namespace ItemFlow.Infrastructure.Mappers;
 
@@ -20,5 +20,12 @@ public static class ItemMapper
             Name = domain.Name,
             Description = domain.Description
         };
+
+    public static void UpdateDbo(this ItemDbo dbo, Item item)
+    {
+        dbo.Name = item.Name;
+        dbo.Description = item.Description;
+    }
+
 }
 

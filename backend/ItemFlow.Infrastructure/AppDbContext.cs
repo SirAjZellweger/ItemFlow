@@ -1,4 +1,4 @@
-﻿using ItemFlow.Infrastructure.DBOs;
+﻿using ItemFlow.Infrastructure.Dbos;
 
 using Microsoft.EntityFrameworkCore;
 

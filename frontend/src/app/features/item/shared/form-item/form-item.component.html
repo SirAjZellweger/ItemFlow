@@ -1,0 +1,15 @@
+<mat-form-field>
+  <mat-label>Bezeichnung</mat-label>
+  <input matInput required [(ngModel)]="name" />
+  @if (!isNameValid()) {
+    <mat-error> Name ist erforderlich </mat-error>
+  }
+</mat-form-field>
+<mat-form-field>
+  <mat-label>Beschreibung</mat-label>
+  <textarea matInput [(ngModel)]="description"></textarea>
+</mat-form-field>
+
+<button matButton="outlined" (click)="submit()" [disabled]="!isFormValid()">
+  {{ mode() === 'create' ? 'Erstellen' : 'Speichern' }}
+</button>

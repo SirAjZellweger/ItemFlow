@@ -1,13 +1,3 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿namespace ItemFlow.API.Dtos;
 
-namespace ItemFlow.API.Dtos;
-
-public record CreateItemDto
-(
-    [Required(ErrorMessage = "Name ist erforderlich.")]
-    [StringLength(100, ErrorMessage = "Name darf maximal 100 Zeichen lang sein.")]
-    string Name,
-
-    [StringLength(500, ErrorMessage = "Beschreibung darf maximal 500 Zeichen lang sein.")]
-    string? Description
-);
+public record CreateItemDto(string Name, string? Description) : ItemBaseDto(Name, Description);

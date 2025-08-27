@@ -12,4 +12,20 @@ public class ItemService(IItemRepository repository) : IItemService
     {
         return await repository.GetAllAsync(cancellationToken);
     }
+
+    public async Task<Item> GetItemByIdAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        return await repository.GetByIdAsync(id, cancellationToken);
+    }
+
+
+    public async Task<Item> UpdateItemAsync(Item item, CancellationToken cancellationToken = default)
+    {
+        return await repository.UpdateAsync(item, cancellationToken);
+    }
+
+    public async Task DeleteItemAsync(Guid id, CancellationToken cancellationToken = default)
+    {
+        await repository.DeleteAsync(id, cancellationToken);
+    }
 }

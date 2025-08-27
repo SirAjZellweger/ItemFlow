@@ -1,6 +1,6 @@
 import { inject, Injectable, signal } from '@angular/core';
 import { Observable, tap } from 'rxjs';
-import { Item, CreateItem } from './item.model';
+import { Item, CreateItem, UpdateItem } from './item.model';
 import { ItemDataService } from './item.data.service';
 
 @Injectable({ providedIn: 'root' })
@@ -12,7 +12,7 @@ export class ItemService {
 
   private initialized = false;
 
-  public init(): void {
+  constructor() {
     if (!this.initialized) {
       this.getItems().subscribe();
       this.initialized = true;
@@ -25,5 +25,25 @@ export class ItemService {
 
   private getItems(): Observable<Item[]> {
     return this.data.getAllItems().pipe(tap(items => this._items.set(items)));
+  }
+
+  public getItemById(id: string): Observable<Item> {
+    return this.data.getItemById(id);
+  }
+
+  public updateItem(id: string, item: UpdateItem): Observable<Item> {
+    return this.data.updateItem(id, item).pipe(
+      tap(updatedItem => {
+        this._items.update(items => items.map(i => (i.id === updatedItem.id ? updatedItem : i)));
+      }),
+    );
+  }
+
+  public deleteItem(id: string): Observable<void> {
+    return this.data.deleteItem(id).pipe(
+      tap(() => {
+        this._items.update(items => items.filter(i => i.id !== id));
+      }),
+    );
   }
 }

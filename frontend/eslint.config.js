@@ -5,12 +5,22 @@ const angular = require('angular-eslint');
 const eslintPluginPrettierRecommended = require('eslint-plugin-prettier/recommended');
 const eslintPluginBoundaries = require('eslint-plugin-boundaries');
 const eslintImportPlugin = require('eslint-plugin-import');
+const eslintPluginPrettier = require('eslint-plugin-prettier');
 
 module.exports = tseslint.config(
   {
+    plugins: {
+      prettier: eslintPluginPrettier,
+    },
+    rules: {
+      'prettier/prettier': 'error',
+    },
+  },
+  {
     files: ['**/*.ts'],
     plugins: {
-      'boundaries': eslintPluginBoundaries,
+      boundaries: eslintPluginBoundaries,
+      prettier: eslintPluginPrettier,
     },
     extends: [
       eslint.configs.recommended,
