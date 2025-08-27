@@ -1,0 +1,8 @@
+<mat-toolbar>
+  <button matIconButton (click)="navigateBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Gegenstand bearbeiten</span>
+</mat-toolbar>
+
+<app-form-item [mode]="'edit'" [initialValue]="item$ | async" (submitted)="submit($event)"></app-form-item>

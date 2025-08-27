@@ -1,0 +1,8 @@
+<mat-toolbar>
+  <button matIconButton (click)="navigateBack()">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <span>Neuen Gegenstand erstellen</span>
+</mat-toolbar>
+
+<app-form-item (submitted)="submit($event)"></app-form-item>

@@ -22,11 +22,15 @@ namespace ItemFlow.Infrastructure.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
-            modelBuilder.Entity("ItemFlow.Infrastructure.DummyDbo", b =>
+            modelBuilder.Entity("ItemFlow.Infrastructure.DBOs.ItemDbo", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -35,7 +39,7 @@ namespace ItemFlow.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Dummy", (string)null);
+                    b.ToTable("Item", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -1,0 +1,20 @@
+<mat-toolbar>
+  <span>Gegenstände</span>
+</mat-toolbar>
+
+@for (item of items(); track item.id) {
+  <mat-card [appearance]="'outlined'" [routerLink]="[item.id]">
+    <mat-card-header>
+      <mat-card-title>{{ item.name }}</mat-card-title>
+      <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions>
+      <button matButton (click)="editItem(item, $event)">Bearbeiten</button>
+      <button matButton (click)="deleteItem(item, $event)">Löschen</button>
+    </mat-card-actions>
+  </mat-card>
+}
+
+<a matFab [routerLink]="'new'" aria-label="Example icon button with a delete icon">
+  <mat-icon>add</mat-icon>
+</a>

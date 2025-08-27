@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ItemFlow.Infrastructure.Dbos;
+
+using Microsoft.EntityFrameworkCore;
 
 namespace ItemFlow.Infrastructure;
 
@@ -9,15 +11,21 @@ public class AppDbContext : DbContext
     {
     }
 
+    public DbSet<ItemDbo> Items { get; set; } = null!;
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<DummyDbo>(entity =>
+        modelBuilder.Entity<ItemDbo>(entity =>
         {
-            entity.ToTable("Dummy");
+            entity.ToTable("Item");
             entity.HasKey(e => e.Id);
+
             entity.Property(e => e.Name)
                    .IsRequired()
                    .HasMaxLength(100);
+
+            entity.Property(e => e.Description)
+                  .HasMaxLength(500);
         });
 
         base.OnModelCreating(modelBuilder);
